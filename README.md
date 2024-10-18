@@ -37,8 +37,9 @@ STRAPI_TOKEN=abcd1234abcd1234
 
 laravel-strapi provides the collection() and entry() calls to return a full collection, or a specific entry from a collection. In the 
 example below we are querying the strapi collection 'blogs' and then getting the entry with id 1 from that collection.
+
 ```php
-use Dbfx\LaravelStrapi\LaravelStrapi;
+use BRFCS\LaravelStrapi\LaravelStrapi;
 
 $strapi = new LaravelStrapi();
 $blogs = $strapi->collection('blogs');
@@ -55,7 +56,7 @@ There are several useful options available as well.
 - ```$queryData``` is an array of additional key-value pairs to add to the query string
 
 ```php
-use Dbfx\LaravelStrapi\LaravelStrapi;
+use BRFCS\LaravelStrapi\LaravelStrapi;
 
 $strapi = new LaravelStrapi();
 $blogs = $strapi->collection('blogs', $sortKey = 'id', $sortOrder = 'DESC', $limit = 20, $start = 0, $fullUrls = true, $populate = ['author', 'images'], $queryData = ['locale' => 'en']);
@@ -63,10 +64,10 @@ $blogs = $strapi->collection('blogs', $sortKey = 'id', $sortOrder = 'DESC', $lim
 $entry = $strapi->entry('blogs', 1, $fullUrls = true, $populate = ['author', 'images'], $queryData = ['locale' => 'en']);
 ```
 
-You may also access Single Type items as follows: 
+You may also access Single Type items as follows:
 
 ```php
-use Dbfx\LaravelStrapi\LaravelStrapi;
+use BRFCS\LaravelStrapi\LaravelStrapi;
 
 $strapi = new LaravelStrapi();
 
@@ -77,10 +78,10 @@ $homepageArray = $strapi->single('homepage');
 $homepageItem = $strapi->single('homepage', 'content');
 ```
 
-And you may select entries by searching for a custom field (e.g. slug): 
+And you may select entries by searching for a custom field (e.g. slug):
 
 ```php
-use Dbfx\LaravelStrapi\LaravelStrapi;
+use BRFCS\LaravelStrapi\LaravelStrapi;
 
 $strapi = new LaravelStrapi();
 

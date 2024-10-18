@@ -11,7 +11,7 @@ declare(strict_types=1);
  * with this source code in the file LICENSE.md.
  */
 
-namespace Dbfx\LaravelStrapi\Commands;
+namespace BRFCS\LaravelStrapi\Commands;
 
 use Illuminate\Console\Command;
 

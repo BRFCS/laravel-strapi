@@ -11,9 +11,9 @@ declare(strict_types=1);
  * with this source code in the file LICENSE.md.
  */
 
-namespace Dbfx\LaravelStrapi\Tests;
+namespace BRFCS\LaravelStrapi\Tests;
 
-use Dbfx\LaravelStrapi\LaravelStrapiServiceProvider;
+use BRFCS\LaravelStrapi\LaravelStrapiServiceProvider;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Orchestra\Testbench\TestCase as Orchestra;
 
@@ -29,7 +29,7 @@ class TestCase extends Orchestra
         parent::setUp();
 
         Factory::guessFactoryNamesUsing(
-            fn (string $modelName) => 'Spatie\\LaravelStrapi\\Database\\Factories\\'.class_basename($modelName).'Factory'
+            fn (string $modelName) => 'Spatie\LaravelStrapi\Database\Factories\\'.class_basename($modelName).'Factory'
         );
     }
 

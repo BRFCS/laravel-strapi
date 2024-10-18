@@ -39,8 +39,7 @@
     "prefer-stable": true,
     "autoload": {
         "psr-4": {
-            "BRFCS\\LaravelStrapi\\": "src",
-            "BRFCS\\LaravelStrapi\\Database\\Factories\\": "database/factories"
+            "BRFCS\\LaravelStrapi\\": "src"
         }
     },
     "autoload-dev": {

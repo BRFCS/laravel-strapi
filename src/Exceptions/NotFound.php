@@ -11,6 +11,6 @@ declare(strict_types=1);
  * with this source code in the file LICENSE.md.
  */
 
-namespace Dbfx\LaravelStrapi\Exceptions;
+namespace BRFCS\LaravelStrapi\Exceptions;
 
 class NotFound extends \RuntimeException {}

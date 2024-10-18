@@ -11,9 +11,9 @@ declare(strict_types=1);
  * with this source code in the file LICENSE.md.
  */
 
-namespace Dbfx\LaravelStrapi;
+namespace BRFCS\LaravelStrapi;
 
-use Dbfx\LaravelStrapi\Commands\LaravelStrapiCommand;
+use BRFCS\LaravelStrapi\Commands\LaravelStrapiCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
