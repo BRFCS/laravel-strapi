@@ -1,5 +1,5 @@
 {
-    "name": "dbfx/laravel-strapi",
+    "name": "brfcs/laravel-strapi",
     "description": "Laravel wrapper for using the Strapi headless CMS",
     "license": "MIT",
     "keywords": [
@@ -40,13 +40,13 @@
     "prefer-stable": true,
     "autoload": {
         "psr-4": {
-            "Dbfx\\LaravelStrapi\\": "src",
-            "Dbfx\\LaravelStrapi\\Database\\Factories\\": "database/factories"
+            "BRFCS\\LaravelStrapi\\": "src",
+            "BRFCS\\LaravelStrapi\\Database\\Factories\\": "database/factories"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Dbfx\\LaravelStrapi\\Tests\\": "tests"
+            "BRFCS\\LaravelStrapi\\Tests\\": "tests"
         }
     },
     "config": {
@@ -59,10 +59,10 @@
     "extra": {
         "laravel": {
             "aliases": {
-                "LaravelStrapi": "Dbfx\\LaravelStrapi\\LaravelStrapiFacade"
+                "LaravelStrapi": "BRFCS\\LaravelStrapi\\LaravelStrapiFacade"
             },
             "providers": [
-                "Dbfx\\LaravelStrapi\\LaravelStrapiServiceProvider"
+                "BRFCS\\LaravelStrapi\\LaravelStrapiServiceProvider"
             ]
         }
     },
