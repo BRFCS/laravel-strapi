@@ -183,6 +183,53 @@ class LaravelStrapi
         return $entries;
     }
 
+    public function document(string $type, string $documentId, $fullUrls = true, array|string $populate = [], array $queryData = [], bool $draft = false): array
+    {
+        $endpoint = $this->strapiUrl.'/'.$type.'/'.$documentId;
+
+        if (!empty($populate)) {
+            $queryData['populate'] = $populate;
+        }
+
+        if ($draft) {
+            $queryData['status'] = 'draft';
+        }
+
+        $endpoint .= '?'.http_build_query($queryData);
+
+        $cacheKey = self::CACHE_KEY.'.'.__FUNCTION__.'.'.encrypt($endpoint);
+
+        $ttl = $draft ? 0 : $this->cacheTime;
+
+        $return = Cache::remember($cacheKey, $ttl, function () use ($endpoint) {
+            $response = Http::withHeaders($this->headers)->get($endpoint);
+
+            return $response->json();
+        });
+
+        if (isset($return['statusCode']) && $return['statusCode'] >= 400) {
+            Cache::forget($cacheKey);
+
+            throw new PermissionDenied('Strapi returned a '.$return['statusCode']);
+        }
+
+        if (!is_array($return)) {
+            Cache::forget($cacheKey);
+
+            if (null === $return) {
+                throw new NotFound('The requested single entry ('.$type.') was null');
+            }
+
+            throw new UnknownError('An unknown Strapi error was returned');
+        }
+
+        if ($fullUrls) {
+            $return = $this->convertToFullUrls($return);
+        }
+
+        return $return;
+    }
+
     public function single(string $type, ?string $pluck = null, $fullUrls = true, array|string $populate = [], array $queryData = []): array
     {
         $endpoint = $this->strapiUrl.'/'.$type;

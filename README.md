@@ -1,27 +1,27 @@
 # Laravel wrapper for using the Strapi headless CMS
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/dbfx/laravel-strapi.svg?style=flat-square)](https://packagist.org/packages/dbfx/laravel-strapi)
-[![Total Downloads](https://img.shields.io/packagist/dt/dbfx/laravel-strapi.svg?style=flat-square)](https://packagist.org/packages/dbfx/laravel-strapi)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/BRFCS/laravel-strapi.svg?style=flat-square)](https://packagist.org/packages/VRFCS/laravel-strapi)
+[![Total Downloads](https://img.shields.io/packagist/dt/BRFCS/laravel-strapi.svg?style=flat-square)](https://packagist.org/packages/BRFCS/laravel-strapi)
 
 ---
 
 Laravel-Strapi is a Laravel helper for using the Strapi headless CMS. 
 
-Note: for Strapi v3 support use version 2.x.x
+Note: for Strapi v3 support use version 2.x.x from 
 
 ## Installation
 
 You can install the package via composer:
 
 ```bash
-composer require dbfx/laravel-strapi
+composer require BRFCS/laravel-strapi
 ```
 
 You can publish and run the migrations with:
 
 You can publish the config file with:
 ```bash
-php artisan vendor:publish --provider="Dbfx\LaravelStrapi\LaravelStrapiServiceProvider" --tag="strapi-config"
+php artisan vendor:publish --provider="BRFCS\LaravelStrapi\LaravelStrapiServiceProvider" --tag="strapi-config"
 ```
 
 You need to define your STRAPI_URL and STRAPI_CACHE_TIME in .env:
@@ -54,6 +54,7 @@ There are several useful options available as well.
 - ```$start``` is the offset to be used with limit, useful for pagination
 - ```$populate``` is an array containing the fields to populate
 - ```$queryData``` is an array of additional key-value pairs to add to the query string
+- ```$draft``` is a boolean to request the draft version of the document *(Strapi v5 only)*
 
 ```php
 use BRFCS\LaravelStrapi\LaravelStrapi;
@@ -62,6 +63,15 @@ $strapi = new LaravelStrapi();
 $blogs = $strapi->collection('blogs', $sortKey = 'id', $sortOrder = 'DESC', $limit = 20, $start = 0, $fullUrls = true, $populate = ['author', 'images'], $queryData = ['locale' => 'en']);
 
 $entry = $strapi->entry('blogs', 1, $fullUrls = true, $populate = ['author', 'images'], $queryData = ['locale' => 'en']);
+
+// Strapi Version 5 uses a document ID for content types and allows you to request the draft version for previewing.
+$article = $strapi->document(
+    'articles',
+    $documentId,
+    true,
+    ['image', 'contributors', 'categories', 'players', 'fixtures'],
+    draft: true
+) 
 ```
 
 You may also access Single Type items as follows:
@@ -99,6 +109,7 @@ Please see [CONTRIBUTING](.github/CONTRIBUTING.md) for details.
 ## Credits
 
 - [Dave Blakey](https://github.com/dbfx)
+- Stuart Grimshaw @ [BRFCS](https://www.brfcs.com)
 - [All Contributors](../../contributors)
 
 ## License
